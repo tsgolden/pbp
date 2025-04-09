@@ -270,6 +270,7 @@ all: dev lint
 setup: install-poetry
     poetry install
     poetry run pre-commit install
+    just mypy
     just install-types
 
 # Install poetry
