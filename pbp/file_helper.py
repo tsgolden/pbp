@@ -409,10 +409,6 @@ class FileHelper:
 
         prefix = f"({at_hour:02}h:{at_minute:02}m)"
         for intersection in intersections:
-            if intersection.duration_secs == 0:
-                self.log.warning("No data from intersection")
-                continue
-
             ss = self._get_sound_status(intersection.entry.uri)
             if ss.error is not None:
                 return None

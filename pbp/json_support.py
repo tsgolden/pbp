@@ -106,15 +106,10 @@ def get_intersecting_entries(
     for entry in json_entries:
         entry_start_in_secs: int = int(entry.start.timestamp())
         entry_end_in_secs: int = entry_start_in_secs + int(entry.duration_secs)
-        if (
-            entry_start_in_secs <= minute_end_in_secs
-            and entry_end_in_secs >= minute_start_in_secs
-        ):
-            start_secs = (
-                max(entry_start_in_secs, minute_start_in_secs) - entry_start_in_secs
-            )
-            end_secs = min(entry_end_in_secs, minute_end_in_secs) - entry_start_in_secs
-            duration_secs = end_secs - start_secs
+        start_secs = max(entry_start_in_secs, minute_start_in_secs) - entry_start_in_secs
+        end_secs = min(entry_end_in_secs, minute_end_in_secs) - entry_start_in_secs
+        duration_secs = end_secs - start_secs
+        if duration_secs > 0:
             intersecting_entries.append(
                 JEntryIntersection(entry, start_secs, duration_secs)
             )
