@@ -431,9 +431,9 @@ class FileHelper:
                 new_pos = ss.sound_file.seek(start_sample)
                 if new_pos != start_sample:
                     # no-data case, let's just read 0 samples to get an empty array:
-                    audio_segment = ss.sound_file.read(0)
+                    audio_segment = ss.sound_file.read(0, dtype="int32")
                 else:
-                    audio_segment = ss.sound_file.read(num_samples)
+                    audio_segment = ss.sound_file.read(num_samples, dtype="int32")
                     if len(audio_segment) < num_samples:
                         # partial-data case.
                         self.log.warning(
