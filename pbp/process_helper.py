@@ -348,7 +348,7 @@ def save_dataset_to_netcdf(
         "frequency": {"_FillValue": None},
     }
     if "sensitivity" in ds.data_vars:
-        encoding["sensitivity"] = {"sensitivity": {"_FillValue": None}}
+        encoding["sensitivity"] = {"_FillValue": None}
     if compress_netcdf:
         for k in ds.data_vars:
             if ds[k].ndim < 2:
